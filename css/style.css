@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+#gameboard  {
+    width: 95%;
+    margin: 0 auto;
+    height: 300px;
+    display: flex;
+    justify-content: space-around;
+    background-color: blanchedalmond;
+}
+.col {
+    width: 10%;
+}
+.hole  {
+    height: 45%;
+    width: 100%;
+    margin-top: 10px;
+}
+.p2.hole  {
+    background-color: pink;
+}
+.p1.hole  {
+    background-color: lightcyan;
+}
+.store  {
+    background-color: lightgreen;
+    margin: 10px 0;
+}
