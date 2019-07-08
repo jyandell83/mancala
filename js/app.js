@@ -4,7 +4,9 @@ const playerHoles = document.querySelectorAll('.hole');
 const stores = document.querySelectorAll('.store');
 
 gameboard.addEventListener('click', e =>  {
-    console.log(e.target);
+    if (e.target.id !== 'gameboard' && e.target.id !== 'p1store' && e.target.id !== 'p2store')  {
+    console.log(e.target.id);
+    }
 })
 
 const game = {
@@ -20,7 +22,7 @@ const game = {
     startGame()  {
         const len = playerHoles.length;
         for (let i = 0; i < len; i++)  {
-            this.boardArray.push(4);
+            this.boardArray.push(i);
         }
         this.stores.push(0);
         this.stores.push(0);
