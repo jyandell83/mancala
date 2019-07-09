@@ -6,34 +6,51 @@ const stores = document.querySelectorAll('.store');
 class Player  {
     constructor(name, isTurn) {
         this.name = name;
-        this.boardArray = [4,4,4,4,4,4,0];
+        this.boardArray = [10,10,10,10,10,10,0];
         this.isTurn = isTurn;
         this.score = 0;
         this.seedsInHand = 0;
     }
     pickUpSeeds ()  {
+        console.log(game.currentHoleNum, '<<<<----current hole number');
         this.seedsInHand = game.masterBoardArray[game.currentHoleNum];
         game.masterBoardArray[game.currentHoleNum] = 0;
-        if (game.currentHoleNum + this.seedsInHand <= 13)  {
-            for (let i = 1; i <= this.seedsInHand; i++)  {
-                game.masterBoardArray[game.currentHoleNum + i]++;
-            }
-        }
-        else {for (let i = 1; i < (14 - game.currentHoleNum); i++){
-            game.masterBoardArray[game.currentHoleNum + i]++;
-            this.seedsInHand--;
-            console.log(this.seedsInHand);
-        } 
-            for (let i = 0; i < this.seedsInHand; i++)  {
-            game.masterBoardArray[0 + i]++;
-        }}
-        this.seedsInHand = 0;
-        console.log(game.masterBoardArray);
-        console.log(this.name);
-        game.render();
+        game.currentHoleNum++;
+        this.dropSeeds();
     }
     dropSeeds ()  {
-        console.log(`${this.name} is dropping seeds`)
+        if (game.currentHoleNum + this.seedsInHand <= 13)  {
+            while (this.seedsInHand)  {
+                console.log(this.seedsInHand, game.currentHoleNum, '<first while loop ----')
+                game.masterBoardArray[game.currentHoleNum]++;
+                this.seedsInHand--;
+                game.currentHoleNum++;
+            }}
+        else if (game.playerOne.isTurn)  {
+            while (this.seedsInHand)  {
+                console.log(this.seedsInHand, game.currentHoleNum, '<second while loop ----')
+                if (game.currentHoleNum === 13) {
+                    game.currentHoleNum = 0;
+                  }
+                game.masterBoardArray[game.currentHoleNum]++;
+                this.seedsInHand--;
+                game.currentHoleNum++;
+            }
+        }
+        else if (game.playerTwo.isTurn)  {
+            while (this.seedsInHand)  {
+                console.log(this.seedsInHand, game.currentHoleNum, '<second while loop ----')
+                if (game.currentHoleNum === 14) {
+                    game.currentHoleNum = 0;
+                }
+                if (game.currentHoleNum === 6) {
+                    game.currentHoleNum = 7;}
+                game.masterBoardArray[game.currentHoleNum]++;
+                this.seedsInHand--;
+                game.currentHoleNum++;
+            }
+        }
+        game.render();
     }
 }
 
