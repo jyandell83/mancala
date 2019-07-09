@@ -25,7 +25,6 @@ class Player  {
                 if (game.currentHoleNum === 13) {
                     game.currentHoleNum = 0;
                   }
-                console.log(this.seedsInHand, game.currentHoleNum, '<---player one')
                 if(this.seedsInHand === 1 && game.currentHoleNum === 6)  {
                     game.extraTurn = true;
                 }
@@ -33,6 +32,7 @@ class Player  {
                 this.seedsInHand--;
                 game.currentHoleNum++;
             }
+            
         }
         else if (game.playerTwo.isTurn)  {
             while (this.seedsInHand)  {
@@ -41,7 +41,6 @@ class Player  {
                 }
                 if (game.currentHoleNum === 6) {
                     game.currentHoleNum = 7;}
-                console.log(this.seedsInHand, game.currentHoleNum, '<---player two')
                 if(this.seedsInHand === 1 && game.currentHoleNum === 13)  {
                     game.extraTurn = true;
                 }
@@ -49,6 +48,10 @@ class Player  {
                 this.seedsInHand--;
                 game.currentHoleNum++;
             }
+
+        }
+        if (game.currentHoleNum !== 7 && game.currentHoleNum !== 14 && game.masterBoardArray[game.currentHoleNum - 1] === 1)  {
+           game.captureSeeds(game.currentHoleNum - 1);
         }
         game.switchTurn();
         game.render();
@@ -80,6 +83,7 @@ const game = {
     playerOne: undefined,
     playerTwo: undefined,
     currentHoleNum: undefined,
+    oppoHole: undefined,
     extraTurn: false,
     render()  {
         for (let i = 0; i < 6; i++)  {
@@ -113,6 +117,23 @@ const game = {
         }
         else {this.extraTurn = false;}
     },
+    captureSeeds(num1)  {
+        if ((this.playerOne.isTurn && num1 > -1 && num1 < 6) || (this.playerTwo.isTurn && num1 > 6 && num1 < 13) )  {
+        let num2 = this.getOppositeHole(num1);
+        let sum = 0;
+        sum = this.masterBoardArray[num1] + this.masterBoardArray[num2];
+        console.log(sum);
+        if (this.playerOne.isTurn)  {
+            this.masterBoardArray[6] += sum;
+        }
+        if (this.playerTwo.isTurn)  {
+            this.masterBoardArray[13] += sum;
+        }
+        this.masterBoardArray[num1] = 0;
+        this.masterBoardArray[num2] = 0;
+        this.render();
+    }
+    },
     getOppositeHole (num)  {
         switch (num) {
             case 0:
@@ -140,17 +161,6 @@ const game = {
             case 12:
                     return 0;
           }
-    },
-    captureOppo(activeSquare)  {
-        if (this.playerOne.isTurn && activeSquare > -1 && activeSquare < 7)  {
-            let sum = activeSquare + oppoSquare;
-            this.masterBoardArray[6] = this.masterBoardArray[6] + sum;
-        }
-        else if (this.playerTwo.isTurn && activeSquare > 6 && activeSquare < 13)  {
-            let sum = activeSquare + oppoSquare;
-            this.masterBoardArray[13] = this.masterBoardArray[13] + sum;
-        }
-        else {/*do nada*/};
-    },
+    }
 }
 
