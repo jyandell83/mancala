@@ -12,7 +12,15 @@ class Player  {
         this.seedsInHand = 0;
     }
     pickUpSeeds ()  {
-        console.log(`${this.name} is picking up seeds`)
+        console.log(`${this.name} is picking up ${game.masterBoardArray[game.currentHoleNum]} seeds`);
+        this.seedsInHand = game.masterBoardArray[game.currentHoleNum];
+        game.masterBoardArray[game.currentHoleNum] = 0;
+        for (let i = 1; i <= this.seedsInHand; i++)  {
+            game.masterBoardArray[game.currentHoleNum + i]++;
+        }
+        this.seedsInHand = 0;
+        console.log(game.masterBoardArray);
+        game.render();
     }
     dropSeeds ()  {
         console.log(`${this.name} is dropping seeds`)
@@ -21,12 +29,16 @@ class Player  {
 
 gameboard.addEventListener('click', e =>  {
     if (e.target.id !== 'gameboard' && e.target.id !== 'p1store' && e.target.id !== 'p2store')  {
-    let string = e.target.id;
-    let newArr = string.split('');
-    newArr.shift();
-    let newString = newArr.join('');
-    let newNumber = parseInt(newString);
-    console.log(newNumber);
+        let strId = e.target.id;
+        let arrId = strId.split('');
+        arrId.shift();
+        game.currentHoleNum = parseInt(arrId.join(''));
+        if (game.playerOne.isTurn)  {
+            game.playerOne.pickUpSeeds();
+        }
+        else if (game.playerTwo.isTurn)  {
+            game.playerTwo.pickUpSeeds();
+        }
     }
 })
 
@@ -34,6 +46,7 @@ const game = {
     masterBoardArray: [],
     playerOne: undefined,
     playerTwo: undefined,
+    currentHoleNum: undefined,
     render()  {
         for (let i = 0; i < 6; i++)  {
             let elem = document.getElementById('h'+i);
@@ -43,6 +56,8 @@ const game = {
             let elem = document.getElementById('h'+i);
             elem.innerText = this.masterBoardArray[i];
         }
+        stores[1].innerText = this.masterBoardArray[6];
+        stores[0].innerText = this.masterBoardArray[13];
     },
     startGame()  {
         this.playerOne = new Player('Bob', true);
