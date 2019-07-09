@@ -29,6 +29,7 @@ class Player  {
         }}
         this.seedsInHand = 0;
         console.log(game.masterBoardArray);
+        console.log(this.name);
         game.render();
     }
     dropSeeds ()  {
@@ -43,10 +44,14 @@ gameboard.addEventListener('click', e =>  {
         arrId.shift();
         game.currentHoleNum = parseInt(arrId.join(''));
         if (game.playerOne.isTurn)  {
+            if (e.target.classList.contains('p1')){
             game.playerOne.pickUpSeeds();
+            }
         }
         else if (game.playerTwo.isTurn)  {
-            game.playerTwo.pickUpSeeds();
+            if (e.target.classList.contains('p2')){
+                game.playerTwo.pickUpSeeds();
+            }
         }
     }
 })
