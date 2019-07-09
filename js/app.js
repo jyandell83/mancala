@@ -19,12 +19,12 @@ class Player  {
                 game.masterBoardArray[game.currentHoleNum + i]++;
             }
         }
-        //this needs to work for around the bend -- do tomorrow <<<<<<<----------------stopping point
         else {for (let i = 1; i < (14 - game.currentHoleNum); i++){
             game.masterBoardArray[game.currentHoleNum + i]++;
             this.seedsInHand--;
             console.log(this.seedsInHand);
-        } for (let i = 0; i < this.seedsInHand; i++)  {
+        } 
+            for (let i = 0; i < this.seedsInHand; i++)  {
             game.masterBoardArray[0 + i]++;
         }}
         this.seedsInHand = 0;
@@ -73,6 +73,10 @@ const game = {
         this.playerTwo = new Player('Tom', false);
         this.masterBoardArray = this.playerOne.boardArray.concat(this.playerTwo.boardArray);
         this.render();
+    },
+    switchTurn()  {
+        this.playerOne.isTurn = !this.playerOne.isTurn;
+        this.playerTwo.isTurn = !this.playerTwo.isTurn;
     }
 }
 
