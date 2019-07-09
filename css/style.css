@@ -5,6 +5,9 @@
     padding:0;
     box-sizing: border-box;
 }
+body  {
+    text-align: center;
+}
 #gameboard  {
     width: 95%;
     margin: 0 auto;

@@ -2,17 +2,18 @@
 const gameboard = document.querySelector('#gameboard');
 const playerHoles = document.querySelectorAll('.hole');
 const stores = document.querySelectorAll('.store');
+const info = document.querySelector('#info');
+let activePlayer ='';
 
 class Player  {
     constructor(name, isTurn) {
         this.name = name;
-        this.boardArray = [10,10,10,10,10,10,0];
+        this.boardArray = [4,4,4,4,4,4,0];
         this.isTurn = isTurn;
         this.score = 0;
         this.seedsInHand = 0;
     }
     pickUpSeeds ()  {
-        console.log(game.currentHoleNum, '<<<<----current hole number');
         this.seedsInHand = game.masterBoardArray[game.currentHoleNum];
         game.masterBoardArray[game.currentHoleNum] = 0;
         game.currentHoleNum++;
@@ -21,14 +22,12 @@ class Player  {
     dropSeeds ()  {
         if (game.currentHoleNum + this.seedsInHand <= 13)  {
             while (this.seedsInHand)  {
-                console.log(this.seedsInHand, game.currentHoleNum, '<first while loop ----')
                 game.masterBoardArray[game.currentHoleNum]++;
                 this.seedsInHand--;
                 game.currentHoleNum++;
             }}
         else if (game.playerOne.isTurn)  {
             while (this.seedsInHand)  {
-                console.log(this.seedsInHand, game.currentHoleNum, '<second while loop ----')
                 if (game.currentHoleNum === 13) {
                     game.currentHoleNum = 0;
                   }
@@ -39,7 +38,6 @@ class Player  {
         }
         else if (game.playerTwo.isTurn)  {
             while (this.seedsInHand)  {
-                console.log(this.seedsInHand, game.currentHoleNum, '<second while loop ----')
                 if (game.currentHoleNum === 14) {
                     game.currentHoleNum = 0;
                 }
@@ -50,7 +48,9 @@ class Player  {
                 game.currentHoleNum++;
             }
         }
+        game.switchTurn();
         game.render();
+        
     }
 }
 
@@ -89,6 +89,13 @@ const game = {
         }
         stores[1].innerText = this.masterBoardArray[6];
         stores[0].innerText = this.masterBoardArray[13];
+        if (this.playerOne.isTurn)  {
+            activePlayer = this.playerOne.name;
+        }
+        else if (this.playerTwo.isTurn)  {
+            activePlayer = this.playerTwo.name;
+        }
+        info.innerText = `It is ${activePlayer}'s turn.`;
     },
     startGame()  {
         this.playerOne = new Player('Bob', true);
