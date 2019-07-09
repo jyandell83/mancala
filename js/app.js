@@ -20,17 +20,15 @@ class Player  {
         this.dropSeeds();
     }
     dropSeeds ()  {
-        if (game.currentHoleNum + this.seedsInHand <= 13)  {
-            while (this.seedsInHand)  {
-                game.masterBoardArray[game.currentHoleNum]++;
-                this.seedsInHand--;
-                game.currentHoleNum++;
-            }}
-        else if (game.playerOne.isTurn)  {
+         if (game.playerOne.isTurn)  {
             while (this.seedsInHand)  {
                 if (game.currentHoleNum === 13) {
                     game.currentHoleNum = 0;
                   }
+                console.log(this.seedsInHand, game.currentHoleNum, '<---player one')
+                if(this.seedsInHand === 1 && game.currentHoleNum === 6)  {
+                    game.extraTurn = true;
+                }
                 game.masterBoardArray[game.currentHoleNum]++;
                 this.seedsInHand--;
                 game.currentHoleNum++;
@@ -43,6 +41,10 @@ class Player  {
                 }
                 if (game.currentHoleNum === 6) {
                     game.currentHoleNum = 7;}
+                console.log(this.seedsInHand, game.currentHoleNum, '<---player two')
+                if(this.seedsInHand === 1 && game.currentHoleNum === 13)  {
+                    game.extraTurn = true;
+                }
                 game.masterBoardArray[game.currentHoleNum]++;
                 this.seedsInHand--;
                 game.currentHoleNum++;
@@ -78,6 +80,7 @@ const game = {
     playerOne: undefined,
     playerTwo: undefined,
     currentHoleNum: undefined,
+    extraTurn: false,
     render()  {
         for (let i = 0; i < 6; i++)  {
             let elem = document.getElementById('h'+i);
@@ -104,8 +107,50 @@ const game = {
         this.render();
     },
     switchTurn()  {
+        if (!this.extraTurn) {
         this.playerOne.isTurn = !this.playerOne.isTurn;
         this.playerTwo.isTurn = !this.playerTwo.isTurn;
-    }
+        }
+        else {this.extraTurn = false;}
+    },
+    getOppositeHole (num)  {
+        switch (num) {
+            case 0:
+                    return 12;
+            case 1:
+                    return 11;
+            case 2:
+                    return 10;
+            case 3:
+                    return 9;
+            case 4:
+                    return 8;
+            case 5:
+                    return 7;
+            case 7:
+                    return 5;
+            case 8:
+                    return 4;
+            case 9:
+                    return 3;
+            case 10:
+                    return 2;
+            case 11:
+                    return 1;
+            case 12:
+                    return 0;
+          }
+    },
+    captureOppo(activeSquare)  {
+        if (this.playerOne.isTurn && activeSquare > -1 && activeSquare < 7)  {
+            let sum = activeSquare + oppoSquare;
+            this.masterBoardArray[6] = this.masterBoardArray[6] + sum;
+        }
+        else if (this.playerTwo.isTurn && activeSquare > 6 && activeSquare < 13)  {
+            let sum = activeSquare + oppoSquare;
+            this.masterBoardArray[13] = this.masterBoardArray[13] + sum;
+        }
+        else {/*do nada*/};
+    },
 }
 
