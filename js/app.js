@@ -12,12 +12,21 @@ class Player  {
         this.seedsInHand = 0;
     }
     pickUpSeeds ()  {
-        console.log(`${this.name} is picking up ${game.masterBoardArray[game.currentHoleNum]} seeds`);
         this.seedsInHand = game.masterBoardArray[game.currentHoleNum];
         game.masterBoardArray[game.currentHoleNum] = 0;
-        for (let i = 1; i <= this.seedsInHand; i++)  {
-            game.masterBoardArray[game.currentHoleNum + i]++;
+        if (game.currentHoleNum + this.seedsInHand <= 13)  {
+            for (let i = 1; i <= this.seedsInHand; i++)  {
+                game.masterBoardArray[game.currentHoleNum + i]++;
+            }
         }
+        //this needs to work for around the bend -- do tomorrow <<<<<<<----------------stopping point
+        else {for (let i = 1; i < (14 - game.currentHoleNum); i++){
+            game.masterBoardArray[game.currentHoleNum + i]++;
+            this.seedsInHand--;
+            console.log(this.seedsInHand);
+        } for (let i = 0; i < this.seedsInHand; i++)  {
+            game.masterBoardArray[0 + i]++;
+        }}
         this.seedsInHand = 0;
         console.log(game.masterBoardArray);
         game.render();
