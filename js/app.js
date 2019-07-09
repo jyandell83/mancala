@@ -35,18 +35,20 @@ const game = {
     playerOne: undefined,
     playerTwo: undefined,
     render()  {
-        for (let i = 0; i < playerHoles.length; i++)  {
-            playerHoles[i].innerText = this.boardArray[i];
+        for (let i = 0; i < 6; i++)  {
+            let elem = document.getElementById('h'+i);
+            elem.innerText = this.masterBoardArray[i];
         }
-        stores[0].innerText = this.stores[0];
-        stores[1].innerText = this.stores[1];
+        for (let i = 7; i < 13; i++)  {
+            let elem = document.getElementById('h'+i);
+            elem.innerText = this.masterBoardArray[i];
+        }
     },
     startGame()  {
-        this.playerOne = new Player('Player 1', true);
-        this.playerTwo = new Player('Player 2', false);
+        this.playerOne = new Player('Bob', true);
+        this.playerTwo = new Player('Tom', false);
         this.masterBoardArray = this.playerOne.boardArray.concat(this.playerTwo.boardArray);
-        console.log(this.masterBoardArray);
-        // this.render();
+        this.render();
     }
 }
 
