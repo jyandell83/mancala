@@ -122,7 +122,7 @@ const game = {
         let num2 = this.getOppositeHole(num1);
         let sum = 0;
         sum = this.masterBoardArray[num1] + this.masterBoardArray[num2];
-        console.log(sum);
+        if (this.masterBoardArray[num2] !== 0)  {
         if (this.playerOne.isTurn)  {
             this.masterBoardArray[6] += sum;
         }
@@ -131,6 +131,7 @@ const game = {
         }
         this.masterBoardArray[num1] = 0;
         this.masterBoardArray[num2] = 0;
+        }
         this.render();
     }
     },
