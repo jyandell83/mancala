@@ -8,6 +8,7 @@ const p2store = document.querySelector('#p2store');
 const welcomeForm = document.querySelector('#welcome-form');
 const welcomeFormSubmit = document.querySelector('#welcome-form-submit');
 const welcomeModal = document.querySelector('#welcome-modal');
+const winnerModal = document.querySelector('#winner-modal');
 let activePlayer ='';
 let p1Name = '';
 let p2Name = '';
@@ -186,10 +187,18 @@ const game = {
         this.playerTwo.score = this.masterBoardArray[13];
         console.log('game should end here', `${this.playerOne.score} and ${this.playerTwo.score}`);
         if (this.playerOne.score > this.playerTwo.score) {
-            console.log('player one wins');
+            const p = document.createElement('p');
+            p.innerText = `${p1Name} wins! ${this.playerOne.score} to ${this.playerTwo.score}`;
+            winnerModal.style.display = 'block';
+            document.querySelector('#winner').appendChild(p);
+            
         }
         else if (this.playerOne.score < this.playerTwo.score)  {
-            console.log('player two winds');
+            const p = document.createElement('p');
+            p.innerText = `${p2Name} wins! ${this.playerTwo.score} to ${this.playerOne.score}`;
+            winnerModal.style.display = 'block';
+            document.querySelector('#winner').appendChild(p);
+            
         }
         else {console.log('game is a draw')};
     },
