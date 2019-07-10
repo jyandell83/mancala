@@ -9,6 +9,15 @@
     <title>Mancala</title>
 </head>
 <body>
+    <div id ="welcome-modal" class="modal"><div class="modal-content">
+            <p>Welcome to the exciting world of Mancala</p>
+            <form>
+                    Player 1: <input id ="p1name" type="text" name="p1name"><br>
+                    Player 2: <input id ="p2name" type="text" name="p2name"><br>
+                    <input id="welcome-form-submit" type="submit" value="Submit">
+            </form>
+          </div>
+    </div>
     <h1>MANCALA</h1>
     <div id="gameboard">
         <div id="p2store" class="col store"></div>
@@ -39,6 +48,7 @@
         <div id="p1store" class="col store"></div>
     </div>
     <div id="info"></div>
+    <div id="winner-modal" class="modal"></div>
     <script src="js/app.js"></script>
 </body>
 </html>

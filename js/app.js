@@ -5,7 +5,12 @@ const stores = document.querySelectorAll('.store');
 const info = document.querySelector('#info');
 const p1store = document.querySelector('#p1store');
 const p2store = document.querySelector('#p2store');
+const welcomeForm = document.querySelector('#welcome-form');
+const welcomeFormSubmit = document.querySelector('#welcome-form-submit');
+const welcomeModal = document.querySelector('#welcome-modal');
 let activePlayer ='';
+let p1Name = '';
+let p2Name = '';
 
 class Player  {
     constructor(name, isTurn) {
@@ -84,6 +89,14 @@ gameboard.addEventListener('click', e =>  {
         }
     }
 })
+welcomeFormSubmit.addEventListener('click', e=>  {
+    e.preventDefault();
+    p1Name = document.querySelector('#p1name').value;
+    p2Name = document.querySelector('#p2name').value;
+    welcomeModal.style.cssText = "display: none;";
+    game.startGame();
+
+})
 
 const game = {
     masterBoardArray: [],
@@ -95,10 +108,17 @@ const game = {
     render()  {
         for (let i = 0; i < 6; i++)  {
             let elem = document.getElementById('h'+i);
+            //code below to append divs as stones, looks bad
+                // for (let j = 1; j <= this.masterBoardArray[i]; j++ ) {
+                //     const div = document.createElement('div');
+                //     div.style.cssText = "width:5px;height:5px;background-color:black;"
+                //     elem.appendChild(div);
+                // }   
             elem.innerText = this.masterBoardArray[i];
         }
         for (let i = 7; i < 13; i++)  {
             let elem = document.getElementById('h'+i);
+            
             elem.innerText = this.masterBoardArray[i];
         }
         stores[1].innerText = this.masterBoardArray[6];
@@ -112,8 +132,8 @@ const game = {
         info.innerText = `It is ${activePlayer}'s turn.`;
     },
     startGame()  {
-        this.playerOne = new Player('Bob', true);
-        this.playerTwo = new Player('Tom', false);
+        this.playerOne = new Player(p1Name, true);
+        this.playerTwo = new Player(p2Name, false);
         this.masterBoardArray = this.playerOne.boardArray.concat(this.playerTwo.boardArray);
         this.render();
     },

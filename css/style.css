@@ -9,7 +9,7 @@ body  {
     text-align: center;
     font-size: 20px;
     font-family: 'Cairo', sans-serif;
-    
+    background-color: rgba(242, 208, 145, 1);
 }
 #gameboard  {
     width: 95%;
@@ -51,6 +51,31 @@ body  {
 .glow  {
     box-shadow: 0 0 40px 0 yellow;
 }
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  #welcome-modal  {
+      display: block;
+  }
+  #winner-modal  {
+      display: none;
+  }
+  .modal-content {
+    background-color: rgba(242, 208, 145, 1);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
 
 
 
