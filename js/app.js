@@ -55,6 +55,7 @@ class Player  {
         }
         game.switchTurn();
         game.render();
+        game.checkEndGame();
         
     }
 }
@@ -133,7 +134,23 @@ const game = {
         this.masterBoardArray[num2] = 0;
         }
         this.render();
-    }
+        }
+    },
+    checkEndGame()  {
+        let sumEndGameP1 = 0;
+        let sumEndGameP2 = 0;
+        for (let i = 0; i < 6; i++)  {
+            sumEndGameP1 = sumEndGameP1 + this.masterBoardArray[i];
+        }
+        for (let j = 7; j < 13; j++)  {
+            sumEndGameP2 = sumEndGameP2 + this.masterBoardArray[j];
+        }
+        if (sumEndGameP1 === 0 || sumEndGameP2 === 0)  {
+            this.commenceEndGame();
+        }
+    },
+    commenceEndGame()  {
+        console.log('game should end here')
     },
     getOppositeHole (num)  {
         switch (num) {
