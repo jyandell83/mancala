@@ -145,12 +145,27 @@ const game = {
         for (let j = 7; j < 13; j++)  {
             sumEndGameP2 = sumEndGameP2 + this.masterBoardArray[j];
         }
+        if (sumEndGameP1 === 0)  {
+            this.masterBoardArray[6] += sumEndGameP2;
+        }
+        if (sumEndGameP2 === 0)  {
+            this.masterBoardArray[13] += sumEndGameP1;
+        }
         if (sumEndGameP1 === 0 || sumEndGameP2 === 0)  {
             this.commenceEndGame();
         }
     },
     commenceEndGame()  {
-        console.log('game should end here')
+        this.playerOne.score = this.masterBoardArray[6];
+        this.playerTwo.score = this.masterBoardArray[13];
+        console.log('game should end here', `${this.playerOne.score} and ${this.playerTwo.score}`);
+        if (this.playerOne.score > this.playerTwo.score) {
+            console.log('player one wins');
+        }
+        else if (this.playerOne.score < this.playerTwo.score)  {
+            console.log('player two winds');
+        }
+        else {console.log('game is a draw')};
     },
     getOppositeHole (num)  {
         switch (num) {
