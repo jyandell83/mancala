@@ -1,8 +1,10 @@
-//some variable to work with
+//some global variable to work with
 const gameboard = document.querySelector('#gameboard');
 const playerHoles = document.querySelectorAll('.hole');
 const stores = document.querySelectorAll('.store');
 const info = document.querySelector('#info');
+const p1store = document.querySelector('#p1store');
+const p2store = document.querySelector('#p2store');
 let activePlayer ='';
 
 class Player  {
@@ -26,6 +28,8 @@ class Player  {
                     game.currentHoleNum = 0;
                   }
                 if(this.seedsInHand === 1 && game.currentHoleNum === 6)  {
+                    p1store.classList.add('glow');
+                    setTimeout(function(){p1store.classList.remove('glow')}, 400);
                     game.extraTurn = true;
                 }
                 game.masterBoardArray[game.currentHoleNum]++;
@@ -42,6 +46,8 @@ class Player  {
                 if (game.currentHoleNum === 6) {
                     game.currentHoleNum = 7;}
                 if(this.seedsInHand === 1 && game.currentHoleNum === 13)  {
+                    p2store.classList.add('glow');
+                    setTimeout(function(){p2store.classList.remove('glow')}, 400);
                     game.extraTurn = true;
                 }
                 game.masterBoardArray[game.currentHoleNum]++;
