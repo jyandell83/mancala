@@ -17,3 +17,6 @@ mancala game
 - JavaScript 
 - HTML
 - CSS
+## Getting Started
+Try the game:
+[Play Mancala](https://jyandell83.github.io/mancala/)
