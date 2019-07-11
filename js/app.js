@@ -108,18 +108,11 @@ const game = {
     extraTurn: false,
     render()  {
         for (let i = 0; i < 6; i++)  {
-            let elem = document.getElementById('h'+i);
-            //code below to append divs as stones, looks bad
-                // for (let j = 1; j <= this.masterBoardArray[i]; j++ ) {
-                //     const div = document.createElement('div');
-                //     div.style.cssText = "width:5px;height:5px;background-color:black;"
-                //     elem.appendChild(div);
-                // }   
+            let elem = document.getElementById('h'+i);  
             elem.innerText = this.masterBoardArray[i];
         }
         for (let i = 7; i < 13; i++)  {
             let elem = document.getElementById('h'+i);
-            
             elem.innerText = this.masterBoardArray[i];
         }
         stores[1].innerText = this.masterBoardArray[6];
@@ -187,19 +180,35 @@ const game = {
         this.playerTwo.score = this.masterBoardArray[13];
         console.log('game should end here', `${this.playerOne.score} and ${this.playerTwo.score}`);
         if (this.playerOne.score > this.playerTwo.score) {
+            const div = document.createElement('div');
             const p = document.createElement('p');
             p.innerText = `${p1Name} wins! ${this.playerOne.score} to ${this.playerTwo.score}`;
+            const btn = document.createElement('button');
+            btn.addEventListener('click', () =>  {
+                this.startGame();
+                winnerModal.style.display = 'none';
+            })
+            div.append(p);
+            div.append(btn);
             winnerModal.style.display = 'block';
-            document.querySelector('#winner').appendChild(p);
+            document.querySelector('#winner').appendChild(div);
             
         }
         else if (this.playerOne.score < this.playerTwo.score)  {
+            const div = document.createElement('div');
             const p = document.createElement('p');
             p.innerText = `${p2Name} wins! ${this.playerTwo.score} to ${this.playerOne.score}`;
+            const btn = document.createElement('button');
+            btn.innerText = "Play Again?";
+            btn.addEventListener('click', () =>  {
+                this.startGame();
+                winnerModal.style.display = 'none';
+            })
+            div.append(p);
+            div.append(btn);
             winnerModal.style.display = 'block';
-            document.querySelector('#winner').appendChild(p);
-            
-        }
+            document.querySelector('#winner').appendChild(div);
+            }
         else {console.log('game is a draw')};
     },
     getOppositeHole (num)  {
