@@ -166,10 +166,10 @@ const game = {
             sumEndGameP2 = sumEndGameP2 + this.masterBoardArray[j];
         }
         if (sumEndGameP1 === 0)  {
-            this.masterBoardArray[6] += sumEndGameP2;
+            this.masterBoardArray[13] += sumEndGameP2;
         }
         if (sumEndGameP2 === 0)  {
-            this.masterBoardArray[13] += sumEndGameP1;
+            this.masterBoardArray[6] += sumEndGameP1;
         }
         if (sumEndGameP1 === 0 || sumEndGameP2 === 0)  {
             this.commenceEndGame();
@@ -184,6 +184,7 @@ const game = {
             const p = document.createElement('p');
             p.innerText = `${p1Name} wins! ${this.playerOne.score} to ${this.playerTwo.score}`;
             const btn = document.createElement('button');
+            btn.innerText = "Play Again?";
             btn.addEventListener('click', () =>  {
                 this.startGame();
                 winnerModal.style.display = 'none';
