@@ -9,6 +9,7 @@ const welcomeForm = document.querySelector('#welcome-form');
 const welcomeFormSubmit = document.querySelector('#welcome-form-submit');
 const welcomeModal = document.querySelector('#welcome-modal');
 const winnerModal = document.querySelector('#winner-modal');
+const winnerContent = document.querySelector('#winner');
 let activePlayer ='';
 let p1Name = '';
 let p2Name = '';
@@ -166,10 +167,10 @@ const game = {
             sumEndGameP2 = sumEndGameP2 + this.masterBoardArray[j];
         }
         if (sumEndGameP1 === 0)  {
-            this.masterBoardArray[13] += sumEndGameP2;
+            this.masterBoardArray[6] += sumEndGameP2;
         }
         if (sumEndGameP2 === 0)  {
-            this.masterBoardArray[6] += sumEndGameP1;
+            this.masterBoardArray[13] += sumEndGameP1;
         }
         if (sumEndGameP1 === 0 || sumEndGameP2 === 0)  {
             this.commenceEndGame();
@@ -178,7 +179,9 @@ const game = {
     commenceEndGame()  {
         this.playerOne.score = this.masterBoardArray[6];
         this.playerTwo.score = this.masterBoardArray[13];
-        console.log('game should end here', `${this.playerOne.score} and ${this.playerTwo.score}`);
+        while (winnerContent.firstChild) {
+            winnerContent.removeChild(winnerContent.firstChild);
+        }
         if (this.playerOne.score > this.playerTwo.score) {
             const div = document.createElement('div');
             const p = document.createElement('p');
@@ -210,7 +213,20 @@ const game = {
             winnerModal.style.display = 'block';
             document.querySelector('#winner').appendChild(div);
             }
-        else {console.log('game is a draw')};
+        else {
+            const div = document.createElement('div');
+            const p = document.createElement('p');
+            p.innerText = `Game is a draw! ${this.playerTwo.score} to ${this.playerOne.score}`;
+            const btn = document.createElement('button');
+            btn.innerText = "Play Again?";
+            btn.addEventListener('click', () =>  {
+                this.startGame();
+                winnerModal.style.display = 'none';
+            })
+            div.append(p);
+            div.append(btn);
+            winnerModal.style.display = 'block';
+            document.querySelector('#winner').appendChild(div);};
     },
     getOppositeHole (num)  {
         switch (num) {
