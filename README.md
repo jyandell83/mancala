@@ -11,6 +11,7 @@ mancala game
 7. The game ends when any player has 6 empty holes. That player then captures all seeds in opponent's holes.
 8. Seeds in the stores are tallied and the player with the most seeds wins.
 ## Initial Wireframe
+![Mancala Wireframe](./assets/MancalaWireFrame.png)
 ## Next Steps
 ## Technologies Used
 - JavaScript 
