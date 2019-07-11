@@ -1,6 +1,7 @@
-# mancala
-mancala game
+# Mancala
+Mancala is an ancient family of board games with numerous variants. This particular game is known as Kalah and is popular in North America.
 ## History
+Mancala is one of the oldest two player games in the world and some historians think it may even be the oldest with archaeological evidence dating back to Jordan in 6000 BCE. Due to it's agricultural nature, "sowing seeds", and the fact that you need very little equipment to play, it is possible that it dates back to the beginning of civilization. 
 ## Rules
 1. Each player has 6 holes and 1 store.
 2. To begin the game 4 seeds are placed in each hole for a total of 48 seeds.
@@ -13,6 +14,9 @@ mancala game
 ## Initial Wireframe
 ![Mancala Wireframe](./assets/MancalaWireFrame.png)
 ## Next Steps
+- Add rules menu to access while in game.
+- Implement AI opponent for single player games.
+- Add CSS animation when capturing opponents seeds.
 ## Technologies Used
 - JavaScript 
 - HTML
