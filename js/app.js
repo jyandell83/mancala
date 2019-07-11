@@ -97,7 +97,6 @@ welcomeFormSubmit.addEventListener('click', e=>  {
     p2Name = document.querySelector('#p2name').value;
     welcomeModal.style.cssText = "display: none;";
     game.startGame();
-
 })
 
 const game = {
@@ -125,6 +124,7 @@ const game = {
             activePlayer = this.playerTwo.name;
         }
         info.innerText = `It is ${activePlayer}'s turn.`;
+        this.renderSeeds();
     },
     startGame()  {
         this.playerOne = new Player(p1Name, true);
@@ -183,16 +183,13 @@ const game = {
             winnerContent.removeChild(winnerContent.firstChild);
         }
         if (this.playerOne.score > this.playerTwo.score) {
-            
             this.fillWinnerModal(`${p1Name} wins! ${this.playerOne.score} to ${this.playerTwo.score}`);
             winnerModal.style.display = 'block';
-            
         }
         else if (this.playerOne.score < this.playerTwo.score)  {
             this.fillWinnerModal(`${p2Name} wins! ${this.playerTwo.score} to ${this.playerOne.score}`);
             winnerModal.style.display = 'block';
-
-            }
+        }
         else {
             this.fillWinnerModal(`Game is a draw! ${this.playerTwo.score} to ${this.playerOne.score}`);
             winnerModal.style.display = 'block';
@@ -212,6 +209,35 @@ const game = {
         div.append(p);
         div.append(btn);
         document.querySelector('#winner').appendChild(div);
+    },
+    renderSeeds()  {
+        for (let j = 0; j < 6; j++)  {
+        let element = document.querySelector('#h' + j);
+        let integer = parseInt(element.innerText);
+        for(let i = 0; i < integer; i++)  {
+            const div = document.createElement('div');
+            div.style.cssText = 'height: 10px; width: 10px; background-color: #F6F5FD; margin: 5px; border-radius: 50%; display; inline; float: left;';
+            element.append(div);
+        }
+        }
+        for (let h = 0; h < 6; h++)  {
+            let element = document.querySelector('#h' + h);
+            element.removeChild(element.childNodes[0]);
+        }
+        for (let jj = 7; jj < 13; jj++)  {
+            let element = document.querySelector('#h' + jj);
+            let integer = parseInt(element.innerText);
+            for(let ii = 0; ii < integer; ii++)  {
+                const div = document.createElement('div');
+                div.style.cssText = 'height: 10px; width: 10px; background-color: #F6F5FD; margin: 5px; border-radius: 50%; display; inline; float: left;';
+                element.append(div);
+            }
+            }
+            for (let hh = 7; hh < 13; hh++)  {
+                let element = document.querySelector('#h' + hh);
+                element.removeChild(element.childNodes[0]);
+            }
+
     },
     getOppositeHole (num)  {
         switch (num) {

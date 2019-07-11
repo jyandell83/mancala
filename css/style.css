@@ -21,7 +21,7 @@ body  {
     background-color: #9FB09E;
     min-width: 500px;
     border-radius: 10px;
-    color: #9C99B0;
+    color: #F6F5FD;
     font-weight: 700;
 }
 .col {
@@ -32,7 +32,7 @@ body  {
     width: 100%;
     margin-top: 10px;
     border-radius: 10px;
-    padding: 35px;
+    padding: 12px;
     background-color: #B1C9AF;
     box-shadow: inset 3px 3px #FDA76A;
 }
