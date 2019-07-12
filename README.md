@@ -21,6 +21,6 @@ Mancala is one of the oldest two player games in the world and some historians t
 - JavaScript 
 - HTML
 - CSS
-## Getting Started
+## Play the game
 Try the game:
 [Play Mancala](https://jyandell83.github.io/mancala/)
