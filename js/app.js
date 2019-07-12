@@ -13,7 +13,7 @@ const winnerContent = document.querySelector('#winner');
 let activePlayer ='';
 let p1Name = '';
 let p2Name = '';
-
+//Class creator for each player
 class Player  {
     constructor(name, isTurn) {
         this.name = name;
@@ -72,7 +72,7 @@ class Player  {
         
     }
 }
-
+//Event Listeners
 gameboard.addEventListener('click', e =>  {
     if (e.target.id !== 'gameboard' && e.target.id !== 'p1store' && e.target.id !== 'p2store')  {
         let strId = e.target.id;
@@ -98,7 +98,7 @@ welcomeFormSubmit.addEventListener('click', e=>  {
     welcomeModal.style.cssText = "display: none;";
     game.startGame();
 })
-
+//Game object
 const game = {
     masterBoardArray: [],
     playerOne: undefined,
@@ -106,6 +106,7 @@ const game = {
     currentHoleNum: undefined,
     oppoHole: undefined,
     extraTurn: false,
+    //This renders the array values to each spot on the gameboard
     render()  {
         for (let i = 0; i < 6; i++)  {
             let elem = document.getElementById('h'+i);  
@@ -126,12 +127,14 @@ const game = {
         info.innerText = `It is ${activePlayer}'s turn.`;
         this.renderSeeds();
     },
+    //this starts the game, is called when the modal form is submitted with player names
     startGame()  {
         this.playerOne = new Player(p1Name, true);
         this.playerTwo = new Player(p2Name, false);
         this.masterBoardArray = this.playerOne.boardArray.concat(this.playerTwo.boardArray);
         this.render();
     },
+    //switches turns between players unless they have an extra turn banked
     switchTurn()  {
         if (!this.extraTurn) {
         this.playerOne.isTurn = !this.playerOne.isTurn;
@@ -139,6 +142,7 @@ const game = {
         }
         else {this.extraTurn = false;}
     },
+    //when player puts last seed in empty hole, captures opponents seeds in opposite hole and renders to gameboard
     captureSeeds(num1)  {
         if ((this.playerOne.isTurn && num1 > -1 && num1 < 6) || (this.playerTwo.isTurn && num1 > 6 && num1 < 13) )  {
         let num2 = this.getOppositeHole(num1);
@@ -157,6 +161,7 @@ const game = {
         this.render();
         }
     },
+    //checks if any player has zero seeds and adds remaining seeds to their store, then calls end game function
     checkEndGame()  {
         let sumEndGameP1 = 0;
         let sumEndGameP2 = 0;
@@ -176,6 +181,7 @@ const game = {
             this.commenceEndGame();
         }
     },
+    //end game function that fills winner modal with winner message and determines winner
     commenceEndGame()  {
         this.playerOne.score = this.masterBoardArray[6];
         this.playerTwo.score = this.masterBoardArray[13];
@@ -195,6 +201,7 @@ const game = {
             winnerModal.style.display = 'block';
         }
     },
+    //creates content in winner modal including restart button and space for winner message
     fillWinnerModal (text)  {
         const div = document.createElement('div');
         const p = document.createElement('p');
@@ -211,6 +218,7 @@ const game = {
         div.append(btn);
         document.querySelector('#winner').appendChild(div);
     },
+    //renders seeds, appends divs depending on number on screen so it looks more like game pieces
     renderSeeds()  {
         for (let j = 0; j < 6; j++)  {
         let element = document.querySelector('#h' + j);
@@ -240,6 +248,7 @@ const game = {
             }
 
     },
+    //switch statement used in the capture seeds method
     getOppositeHole (num)  {
         switch (num) {
             case 0:
