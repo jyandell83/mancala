@@ -72,30 +72,16 @@ body  {
     border: 1px solid #888;
     width: 80%;
   }
+.button  {
+    padding: 5px;
+    background-color: #F6F5FD;
+    color: #9C99B0;
+    border: 1px solid #9FB09E;
+}
+.button:hover  {
+    background-color: #FDA76A;
+}
 
 
-
-
-
-/* Color Theme Swatches in Hex */
-.red-at-night-shepherds-delight-1-hex { color: #FFF587; }
-.red-at-night-shepherds-delight-2-hex { color: #FF8C64; }
-.red-at-night-shepherds-delight-3-hex { color: #FF665A; }
-.red-at-night-shepherds-delight-4-hex { color: #7D6B7D; }
-.red-at-night-shepherds-delight-5-hex { color: #A3A1A8; }
-
-/* Color Theme Swatches in RGBA */
-.red-at-night-shepherds-delight-1-rgba { color: rgba(255, 245, 134, 1); }
-.red-at-night-shepherds-delight-2-rgba { color: rgba(255, 140, 100, 1); }
-.red-at-night-shepherds-delight-3-rgba { color: rgba(255, 102, 89, 1); }
-.red-at-night-shepherds-delight-4-rgba { color: rgba(124, 106, 124, 1); }
-.red-at-night-shepherds-delight-5-rgba { color: rgba(162, 160, 168, 1); }
-
-/* Color Theme Swatches in HSLA */
-.red-at-night-shepherds-delight-1-hsla { color: hsla(55, 100, 76, 1); }
-.red-at-night-shepherds-delight-2-hsla { color: hsla(15, 100, 69, 1); }
-.red-at-night-shepherds-delight-3-hsla { color: hsla(4, 100, 67, 1); }
-.red-at-night-shepherds-delight-4-hsla { color: hsla(300, 7, 45, 1); }
-.red-at-night-shepherds-delight-5-hsla { color: hsla(257, 4, 64, 1); }
 
 

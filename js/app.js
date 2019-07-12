@@ -202,6 +202,7 @@ const game = {
         p.innerText = text;
         const btn = document.createElement('button');
         btn.innerText = "Play Again?";
+        btn.setAttribute('class', 'button');
         btn.addEventListener('click', () =>  {
                 this.startGame();
                 winnerModal.style.display = 'none';
