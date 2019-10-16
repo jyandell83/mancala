@@ -70,8 +70,12 @@ class Player  {
         game.switchTurn();
         game.render();
         game.checkEndGame();
-        if(game.playerTwo.name === 'The Computer') {
-            console.log('computer should take a turn')
+        //Putting this here for now, refactor later ... this is brain of computer player
+        if(game.playerTwo.name === 'The Computer' && game.playerTwo.isTurn) {
+            const computerPicks = [7, 8, 9, 10, 11, 12];
+            game.currentHoleNum = computerPicks[Math.floor(Math.random() * computerPicks.length)];
+            console.log(game.currentHoleNum);
+            setTimeout(game.playerTwo.pickUpSeeds(), 1000);
         }
         
     }
