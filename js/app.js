@@ -70,6 +70,9 @@ class Player  {
         game.switchTurn();
         game.render();
         game.checkEndGame();
+        if(game.playerTwo.name === 'The Computer') {
+            console.log('computer should take a turn')
+        }
         
     }
 }
@@ -101,7 +104,10 @@ welcomeFormSubmit.addEventListener('click', e=>  {
 })
 singlePlayerSubmit.addEventListener('click', e=>  {
     e.preventDefault();
-    console.log('Hi single player');
+    p1Name = 'The Challenger';
+    p2Name = 'The Computer';
+    welcomeModal.style.cssText = "display: none;";
+    game.startGame();
 })
 //Game object
 const game = {
