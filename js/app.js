@@ -7,6 +7,7 @@ const p1store = document.querySelector('#p1store');
 const p2store = document.querySelector('#p2store');
 const welcomeForm = document.querySelector('#welcome-form');
 const welcomeFormSubmit = document.querySelector('#welcome-form-submit');
+const singlePlayerSubmit = document.querySelector('#single-player-submit');
 const welcomeModal = document.querySelector('#welcome-modal');
 const winnerModal = document.querySelector('#winner-modal');
 const winnerContent = document.querySelector('#winner');
@@ -97,6 +98,10 @@ welcomeFormSubmit.addEventListener('click', e=>  {
     p2Name = document.querySelector('#p2name').value;
     welcomeModal.style.cssText = "display: none;";
     game.startGame();
+})
+singlePlayerSubmit.addEventListener('click', e=>  {
+    e.preventDefault();
+    console.log('Hi single player');
 })
 //Game object
 const game = {
