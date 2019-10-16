@@ -72,10 +72,16 @@ class Player  {
         game.checkEndGame();
         //Putting this here for now, refactor later ... this is brain of computer player
         if(game.playerTwo.name === 'The Computer' && game.playerTwo.isTurn) {
-            const computerPicks = [7, 8, 9, 10, 11, 12];
+            let computerPicks = [7, 8, 9, 10, 11, 12];
+            for (let i = 7; i < 13; i++) {
+                if (game.masterBoardArray[i] === 0) {
+                    computerPicks.splice(computerPicks.indexOf(i), 1)
+                }
+            }
+            console.log(computerPicks);
             game.currentHoleNum = computerPicks[Math.floor(Math.random() * computerPicks.length)];
             console.log(game.currentHoleNum);
-            setTimeout(game.playerTwo.pickUpSeeds(), 1000);
+            setTimeout(() => game.playerTwo.pickUpSeeds(), 3000);
         }
         
     }
